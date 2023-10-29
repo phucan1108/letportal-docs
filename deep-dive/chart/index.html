@@ -1,0 +1,2730 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Explore a Chart to configure flexible data chart, how to format a chart, apply real-time chart and filters">
+      
+      
+        <meta name="author" content="An Quang Phuc Le">
+      
+      
+        <link rel="canonical" href="https://docs.letportal.app/deep-dive/chart/">
+      
+      
+        <link rel="prev" href="../dynamiclist/">
+      
+      
+        <link rel="next" href="../page/">
+      
+      
+      <link rel="icon" href="../../assets/images/logo.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.7">
+    
+    
+      
+        <title>Deep Dive - Chart - LET Portal Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#preparation-knowledge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LET Portal Documentation" class="md-header__button md-logo" aria-label="LET Portal Documentation" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LET Portal Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deep Dive - Chart
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LET Portal Documentation" class="md-nav__button md-logo" aria-label="LET Portal Documentation" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.ico" alt="logo">
+
+    </a>
+    LET Portal Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/big-picture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Big Picture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/technologies-keypoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Technologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Roadmap
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/0.9.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0.9.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/0.8.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0.8.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/0.7.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0.7.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/0.6.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0.6.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/prerequisites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prerequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/let-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Let's start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/your-first-standard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Your first standard page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/your-first-dynamic-list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Your first dynamic list
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/your-first-chart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Your first chart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/your-first-app/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Your first app
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Fundamentals
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fundamentals/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fundamentals/state-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    State Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fundamentals/chaining-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaining Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deep Dive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Dive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../app-package/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../standard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../standard-array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standard Array
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamiclist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dynamic List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chart
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chart
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparation-knowledge" class="md-nav__link">
+    Preparation knowledge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chart-info" class="md-nav__link">
+    Chart Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Chart Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapping-data-example-of-simple" class="md-nav__link">
+    Mapping data - Example of Simple
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-data-example-of-grouped" class="md-nav__link">
+    Mapping data - Example of Grouped
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasource" class="md-nav__link">
+    Datasource
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-setup-real-time-chart" class="md-nav__link">
+    How to setup real-time chart
+  </a>
+  
+    <nav class="md-nav" aria-label="How to setup real-time chart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interval-refresh-data" class="md-nav__link">
+    Interval refresh data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequential-data" class="md-nav__link">
+    Sequential data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-min-max-for-number-range" class="md-nav__link">
+    Set Min Max for number range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-date-value" class="md-nav__link">
+    Format date value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#styling-chart" class="md-nav__link">
+    Styling chart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chart-filters" class="md-nav__link">
+    Chart Filters
+  </a>
+  
+    <nav class="md-nav" aria-label="Chart Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chart-filter-options" class="md-nav__link">
+    Chart Filter Options
+  </a>
+  
+    <nav class="md-nav" aria-label="Chart Filter Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-types" class="md-nav__link">
+    Control Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Control Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numberpicker" class="md-nav__link">
+    NumberPicker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datepicker" class="md-nav__link">
+    DatePicker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monthyearpicker" class="md-nav__link">
+    MonthYearPicker
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../expression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Expression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mongodb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../built-in-methods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Built-in methods
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiple-execution-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Executions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../localization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Localization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Microservices
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Microservices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/service-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/add-new-service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add New Service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/centralized-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centralized Log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/service-monitor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Monitor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Backup&Recovery
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Backup&Recovery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backup-recovery/backup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backup-recovery/recovery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recovery
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chat
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Chat
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chat-videocall/chat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chat-videocall/videocall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Video call
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/roles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configurations
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Configurations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/spa-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SPA Web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/portal-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Portal Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/identity-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Identity Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/chat-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chat Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/gateway-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/service-management-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Management Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/multiple-environments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Environments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deployment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deploy-spa-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SPA Web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/some-services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server-side APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/one-machine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    One VM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CLI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            CLI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_14_2" id="__nav_14_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14_2">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-info/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal info
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal install
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal uninstall
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-upgrade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal upgrade
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-downgrade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal downgrade
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-patch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal patch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../open-source/list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Open source projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparation-knowledge" class="md-nav__link">
+    Preparation knowledge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chart-info" class="md-nav__link">
+    Chart Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Chart Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapping-data-example-of-simple" class="md-nav__link">
+    Mapping data - Example of Simple
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-data-example-of-grouped" class="md-nav__link">
+    Mapping data - Example of Grouped
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasource" class="md-nav__link">
+    Datasource
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-setup-real-time-chart" class="md-nav__link">
+    How to setup real-time chart
+  </a>
+  
+    <nav class="md-nav" aria-label="How to setup real-time chart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interval-refresh-data" class="md-nav__link">
+    Interval refresh data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequential-data" class="md-nav__link">
+    Sequential data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-min-max-for-number-range" class="md-nav__link">
+    Set Min Max for number range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-date-value" class="md-nav__link">
+    Format date value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#styling-chart" class="md-nav__link">
+    Styling chart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chart-filters" class="md-nav__link">
+    Chart Filters
+  </a>
+  
+    <nav class="md-nav" aria-label="Chart Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chart-filter-options" class="md-nav__link">
+    Chart Filter Options
+  </a>
+  
+    <nav class="md-nav" aria-label="Chart Filter Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-types" class="md-nav__link">
+    Control Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Control Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numberpicker" class="md-nav__link">
+    NumberPicker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datepicker" class="md-nav__link">
+    DatePicker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monthyearpicker" class="md-nav__link">
+    MonthYearPicker
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Chart</h1>
+
+<p><strong>The documentation applies to:</strong><img alt="✅" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/2705.svg" title=":white_check_mark:" /> v0.8.0</p>
+<h3 id="preparation-knowledge">Preparation knowledge<a class="headerlink" href="#preparation-knowledge" title="Permanent link">&para;</a></h3>
+<p>Before you read, please ensure you must complete <a href="../../getting-started/your-first-standard/">this step</a>. This step will help you to a basic knowledge about Dynamic List Component.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>We assume you have an experience to work with LET Portal, at least login/menu and how to redirect. We just provide some short steps for letting you know a main points</p>
+</div>
+<h3 id="chart-info">Chart Info<a class="headerlink" href="#chart-info" title="Permanent link">&para;</a></h3>
+<p>We only highlight two complicated fields which are <strong>Chart Type</strong> and <strong>Mapping Projection</strong></p>
+<p>On LET Portal, we are using <a href="https://swimlane.github.io/ngx-charts">ngx-charts</a> for rendering Chart. So that a format data must be two models below. Note: A data must be an array </p>
+<p>``` json tab="Simple"
+[{
+    name: 'name',
+    value: 'value' <br />
+}]
+<div class="highlight"><pre><span></span><code>``` json tab=&quot;Grouped&quot;
+[{
+    name: &#39;name&#39;,
+    series: [
+        {
+            name: &#39;name&#39;,
+            value:&#39;value&#39;
+        }
+    ]   
+}]
+</code></pre></div></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>According to ngx-charts, x axis will be <code>name</code> and y axis will be <code>value</code> on mapping projection.</p>
+</div>
+<p>Based on json data, <strong>Mapping Projection</strong> is used to map a data when you query on database.</p>
+<h4 id="mapping-data-example-of-simple">Mapping data - Example of Simple<a class="headerlink" href="#mapping-data-example-of-simple" title="Permanent link">&para;</a></h4>
+<p>For example of <strong>Simple</strong> chart, a response data from server-side is</p>
+<p>``` json tab="Database response"
+{
+    result: [
+        {
+            text: 'Success',
+            count: 18
+        },
+        {
+            text: 'Fail',
+            count: 0
+        }
+    ]
+}
+<div class="highlight"><pre><span></span><code>Then with mapping projection is `name=text;value=count`, LET Portal will take an array of `result` property to project. A data will be
+
+``` json tab=&quot;Chart data&quot;
+[
+    {
+        name: &#39;Success&#39;,
+        value: 18
+    },
+    {
+        name: &#39;Fail&#39;,
+        value: 0
+    }
+]
+</code></pre></div></p>
+<h4 id="mapping-data-example-of-grouped">Mapping data - Example of Grouped<a class="headerlink" href="#mapping-data-example-of-grouped" title="Permanent link">&para;</a></h4>
+<p>With <strong>Grouped</strong>, <code>group</code> of mapping projection represents to <code>name</code> of Grouped Json.</p>
+<p>For example</p>
+<p>``` json tab="Database response"
+{
+    result: [
+        {
+            text: 'Success',
+            count: 18,
+            monitor: 'HTTP'
+        },
+        {
+            text: 'Fail',
+            count: 0,
+            monitor: 'Memory'
+        }
+    ]
+}
+<div class="highlight"><pre><span></span><code>With mapping projection is `name=text;value=count;group=monitor`, a chart data is
+
+``` json tab=&quot;Chart data&quot;
+[
+    {
+        name: &#39;HTTP&#39;,
+        series: [
+            {
+                name: &#39;Success&#39;,
+                value: 18
+            }
+        ]
+    },
+    {
+        name: &#39;Memory&#39;,
+        series: [
+            {
+                name: &#39;Fail&#39;,
+                value: 0
+            }
+        ]
+    }
+]
+</code></pre></div></p>
+<p>For <strong>Simple</strong> Chart, Chart Type don't have a <strong>Grouped</strong> name, otherwise it has.</p>
+<p>You also can prefer <a href="https://swimlane.github.io/ngx-charts">this link</a> above to see a sample chart</p>
+<h3 id="datasource">Datasource<a class="headerlink" href="#datasource" title="Permanent link">&para;</a></h3>
+<p>Based on a required data for Chart, LET Portal is supporting two database types are <code>MongoDB</code> and <code>SQL-Based</code>. You can read these sections for <strong>How to query database</strong></p>
+<ul>
+<li>MongoDB <a href="../mongodb/">here</a></li>
+<li>SQL <a href="../sql/#sql-chart">here</a></li>
+</ul>
+<h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
+<h4 id="how-to-setup-real-time-chart">How to setup real-time chart<a class="headerlink" href="#how-to-setup-real-time-chart" title="Permanent link">&para;</a></h4>
+<p>We only focus on how to setup real-time chart by some options. Let's take a look on 3 options below:</p>
+<ul>
+<li><code>allowrealtime</code>: Enable real-time chart. Default: false. </li>
+<li><code>timetorefresh</code>: A duration to refresh a chart, on seconds. Default: 60</li>
+<li><code>comparerealtimefield</code>: A date field MUST be used to compare with (NOW - timetorefresh). Default: empty</li>
+</ul>
+<p>We have two real-time types, one is interval refresh and one is sequential data nearest <code>NOW</code>. Also you need to read <a href="../mongodb/">MongoDB</a> and <a href="../sql/">SQL</a> for typing Query</p>
+<div class="admonition warning">
+<p class="admonition-title">SQL</p>
+<p>You need to put <code>{{REAL_TIME}}</code> word on your SQL because it helps LET Portal to generate a real-time condition</p>
+</div>
+<h5 id="interval-refresh-data">Interval refresh data<a class="headerlink" href="#interval-refresh-data" title="Permanent link">&para;</a></h5>
+<p>This real-time report type is a report will spam many requests in interval time. There are no changing number of records on <code>result</code>.</p>
+<p>For this setup, you only set <code>allowrealtime</code> to true and <code>timetorefresh</code> to 60. Ensure <code>comparerealtimefield</code> is <code>NULL</code>.</p>
+<p>LET Portal will recall a query after <code>timetorefresh</code> seconds.</p>
+<div class="admonition tip">
+<p class="admonition-title">Usage</p>
+<p>Interval refresh data is very useful for calculated report such as: Sale report, Revenue, etc. In the example below, it is a grouped HTTP counters of one service. </p>
+</div>
+<p><img alt="Interval chart" src="../../assets/images/deep-dive/chart/interval-chart.jpg" /></p>
+<h5 id="sequential-data">Sequential data<a class="headerlink" href="#sequential-data" title="Permanent link">&para;</a></h5>
+<p>This real-time chart type is a report will try to get more and more data from time to time. The number of records is very different per call.</p>
+<p>For this setup, you set <code>allowrealtime</code> to true and <code>timetorefresh</code> to 60. Ensure <code>comparerealtimefield</code> is <strong>A datetime field on database</strong>. LET Portal will help you to get data based on this field, by use some advanced techniques.</p>
+<div class="admonition warning">
+<p class="admonition-title">Maximum records per call</p>
+<p>Ensure you have to set a <code>{ $limit: x }</code> for MongoDB or <code>TOP x records</code> for SQL. This will help you to keep <code>x axis</code> has maximum <code>x</code> checkpoints. We always maintain maximum checkpoints on x axis, older data will be removed.</p>
+</div>
+<p>Now let take a look on this flow below to help you know a Sequential data.</p>
+<p><img alt="Sequential data flow" src="../../assets/images/deep-dive/chart/SequentiaChart.png" /></p>
+<p>This is one example of Sequential data which we used on LET Portal.</p>
+<p><img alt="Sequential chart" src="../../assets/images/deep-dive/chart/sequential-chart.jpg" /></p>
+<h4 id="set-min-max-for-number-range">Set Min Max for number range<a class="headerlink" href="#set-min-max-for-number-range" title="Permanent link">&para;</a></h4>
+<p>If you have a requirement for setting min max value for x and y, you can enter <code>x=[0,100];y=[0,1000]</code> on <code>datarange</code> field</p>
+<h4 id="format-date-value">Format date value<a class="headerlink" href="#format-date-value" title="Permanent link">&para;</a></h4>
+<p>We use <a href="https://momentjs.com/docs/#/displaying/format/">momentjs</a> to format a x axis value. You should enter a format pattern on <code>xformatdate</code>. For example, you want to display a real-time chart only Hour and Minute, so you should enter <code>HH:mm</code>.</p>
+<h4 id="styling-chart">Styling chart<a class="headerlink" href="#styling-chart" title="Permanent link">&para;</a></h4>
+<p><code>colors</code> option will help you to style your chart. You can use style theme or custom colors array by yourself.</p>
+<ul>
+<li>Custom colors: you can enter <code>["red","blue","yellow"]</code></li>
+<li>Style theme: many available themes are <code>["vivid"]</code> <code>["natural"]</code> <code>["horizon"]</code> , etc. You can see themes on ngx-charts page.</li>
+</ul>
+<h3 id="chart-filters">Chart Filters<a class="headerlink" href="#chart-filters" title="Permanent link">&para;</a></h3>
+<p>If you have a requirement for filtering chart data such as <strong>Display report between August 2019 and August 2020</strong> or <strong>Display sale report has a revenue more than 10 milions</strong>, so Chart Filter are yours.</p>
+<div class="admonition warning">
+<p class="admonition-title">Limitation</p>
+<p>Chart Filter can't be applied for Sequential data and you need to put <code>{{FILTER}}</code> on your SQL</p>
+</div>
+<p>As Dynamic List or Standard, we also provide Population Filters for Chart. It will help you to generate quickly a Chart Filter based on example result.</p>
+<p><img alt="Chart Filters Population" src="../../assets/images/deep-dive/chart/chart-filter-population.jpg" /></p>
+<h4 id="chart-filter-options">Chart Filter Options<a class="headerlink" href="#chart-filter-options" title="Permanent link">&para;</a></h4>
+<p>After you populate chart filters, you can edit this filter by clicking on icon Edit on the same row</p>
+<p><img alt="Chart Filter Options" src="../../assets/images/deep-dive/chart/chart-filter-options.jpg" /></p>
+<h5 id="control-types">Control Types<a class="headerlink" href="#control-types" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>Control Name</th>
+<th>Allow Multiple</th>
+<th>Range Value</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Checkbox</td>
+<td>No</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Select</td>
+<td>Yes</td>
+<td></td>
+<td>Any value based on Datasource</td>
+</tr>
+<tr>
+<td>NumerPicker</td>
+<td>Yes</td>
+<td>[0,1,2] or [0..1] or [0..2..10] or ['0-10', '11-20']</td>
+<td>0 or '0-10' or [0,1] or ['0-10']</td>
+</tr>
+<tr>
+<td>DatePicker</td>
+<td>Yes</td>
+<td>Blank or['1970-01-01'] or ['Now'] or ['Now-5'] or ['Now+5'] or ['1970-01-01', '2020-02-02'] or ['1970-01-01', 'Now']</td>
+<td>Any value on Range</td>
+</tr>
+<tr>
+<td>MonthYearPicker</td>
+<td>Yes</td>
+<td>Blank or ['2020-02'] or ['Now'] or ['Now-5'] or ['Now+5'] or ['1970-01', 'Now']</td>
+<td>'2020-02' or ['2020-02','2020-03']</td>
+</tr>
+</tbody>
+</table>
+<h6 id="numberpicker">NumberPicker<a class="headerlink" href="#numberpicker" title="Permanent link">&para;</a></h6>
+<p>NumberPicker allows you to generate a Selector with shortcut datesource. Let's go one by one of Range value. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are no different between Single and Multiple Choice on NumberPicker</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="na">[0,1,2]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span>
+
+<span class="na">[0..5]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">]</span><span class="w"> </span><span class="c1">// Speard out start-end</span>
+
+<span class="na">[0..2..10]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">10</span><span class="p">]</span><span class="w"> </span><span class="c1">// Speard out start-end with increasing number</span>
+
+<span class="na">[&#39;0-10&#39;,&#39;11-20&#39;]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;</span><span class="m">0</span><span class="o">-</span><span class="m">10</span><span class="sc">&#39;,&#39;</span><span class="m">11</span><span class="o">-</span><span class="m">20</span><span class="err">&#39;</span><span class="p">]</span><span class="w"> </span><span class="c1">// Allow choose different number range</span>
+</code></pre></div>
+<h6 id="datepicker">DatePicker<a class="headerlink" href="#datepicker" title="Permanent link">&para;</a></h6>
+<p>DatePicker allows you to generate a single DatePicker control or two DatePicker controls for <code>Start Date</code> and <code>End Date</code>. You can use <code>Range Value</code> to set min-max date value on each DatePicker</p>
+<div class="admonition tip">
+<p class="admonition-title">Multiple</p>
+<p><code>Is Multiple</code> is <code>true</code> that means a DatePicker filter is a start-end DatePicker</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="n">Blank</span><span class="w"> </span><span class="c1">// Min=1970-01-01 Max=Now </span>
+
+<span class="na">[&#39;1971-01-01&#39;]</span><span class="w"> </span><span class="c1">//Min=1971-01-01 Max=Now + 30 years</span>
+
+<span class="na">[&#39;Now&#39;]</span><span class="w"> </span><span class="c1">//Min=Now Max=Now + 30 years</span>
+
+<span class="na">[&#39;Now-5&#39;]</span><span class="w"> </span><span class="c1">//Min=Now - 5d Max=Now + 30 years</span>
+
+<span class="na">[&#39;Now+5&#39;]</span><span class="w"> </span><span class="c1">//Min=Now + 5d Max=Now + 30 years </span>
+
+<span class="na">[&#39;1971-01-01&#39;, &#39;2020-02-02&#39;]</span><span class="w"> </span><span class="c1">//Min=1971-01-01 Max=2020-02-02</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Now</p>
+<p><code>Now</code> is a keyword to help LET Portal get a current Date</p>
+</div>
+<h6 id="monthyearpicker">MonthYearPicker<a class="headerlink" href="#monthyearpicker" title="Permanent link">&para;</a></h6>
+<p>MonthYearPicker allows you to generate a single MonthYearPicker control or two MonthYearPicker controls for <code>Start Month</code> and <code>End Month</code>. You can use <code>Range Value</code> to set min-max month value on <strong>each MonthYearPicker</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">Multiple</p>
+<p><code>Is Multiple</code> is <code>true</code> that means a MonthYearPicker filter is a start-end MonthYearPicker</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="n">Blank</span><span class="w"> </span><span class="c1">// Min=1970-01 Max=Month of Now </span>
+
+<span class="na">[&#39;1971-01&#39;]</span><span class="w"> </span><span class="c1">//Min=1971-01 Max=Month of (Now + 30 years)</span>
+
+<span class="na">[&#39;Now&#39;]</span><span class="w"> </span><span class="c1">//Min=Month of Now Max=Month of (Now + 30 years)</span>
+
+<span class="na">[&#39;Now-5&#39;]</span><span class="w"> </span><span class="c1">//Min=Month of (Now - 5 months) Max=Month of (Now + 30 years)</span>
+
+<span class="na">[&#39;Now+5&#39;]</span><span class="w"> </span><span class="c1">//Min=Month of (Now + 5 months) Max=Month of (Now + 30 years)</span>
+
+<span class="na">[&#39;1971-01&#39;, &#39;2020-02&#39;]</span><span class="w"> </span><span class="c1">//Min=1971-01 Max=2020-02</span>
+</code></pre></div>
+<p><img alt="Chart Filters Example" src="../../assets/images/deep-dive/chart/chart-filter-examples.jpg" /></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        
+
+
+<!-- Application footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+
+        <!-- Link to previous page -->
+        
+          <a href="../dynamiclist/"
+              title="Dynamic List"
+              class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+              rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Dynamic List
+              </span>
+            </div>
+          </a>
+        
+
+        <!-- Link to next page -->
+        
+          <a href="../page/"
+              title="Page"
+              class="md-flex md-footer-nav__link md-footer-nav__link--next"
+              rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Page
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward
+                    md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            @Copyright 2020, An Quang Phuc Le
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+
+      <!-- Social links -->
+      <div class="md-social">
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2643 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Learn how to deploy LET Portal on one VM">
+      
+      
+        <meta name="author" content="An Quang Phuc Le">
+      
+      
+        <link rel="canonical" href="https://docs.letportal.app/deployment/one-machine/">
+      
+      
+        <link rel="prev" href="../some-services/">
+      
+      
+        <link rel="next" href="../docker/">
+      
+      
+      <link rel="icon" href="../../assets/images/logo.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.7">
+    
+    
+      
+        <title>Deployment - One VM - LET Portal Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deployment-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LET Portal Documentation" class="md-header__button md-logo" aria-label="LET Portal Documentation" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LET Portal Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deployment - One VM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LET Portal Documentation" class="md-nav__button md-logo" aria-label="LET Portal Documentation" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.ico" alt="logo">
+
+    </a>
+    LET Portal Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/big-picture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Big Picture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/technologies-keypoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Technologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Roadmap
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/0.9.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0.9.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/0.8.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0.8.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/0.7.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0.7.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/0.6.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0.6.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/prerequisites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prerequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/let-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Let's start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/your-first-standard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Your first standard page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/your-first-dynamic-list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Your first dynamic list
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/your-first-chart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Your first chart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/your-first-app/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Your first app
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Fundamentals
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fundamentals/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fundamentals/state-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    State Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fundamentals/chaining-events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaining Events
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deep Dive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Dive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/app-package/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/standard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/standard-array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standard Array
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/dynamiclist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dynamic List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/chart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/expression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Expression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/mongodb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/built-in-methods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Built-in methods
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/multiple-execution-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Executions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dive/localization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Localization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Microservices
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Microservices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/service-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/add-new-service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add New Service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/centralized-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centralized Log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../microservices/service-monitor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Monitor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Backup&Recovery
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Backup&Recovery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backup-recovery/backup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backup-recovery/recovery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recovery
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chat
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Chat
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chat-videocall/chat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chat-videocall/videocall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Video call
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/roles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configurations
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Configurations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/spa-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SPA Web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/portal-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Portal Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/identity-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Identity Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/chat-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chat Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/gateway-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/service-management-apis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Management Apis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configurations/multiple-environments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Environments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deployment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy-spa-web/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SPA Web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../some-services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server-side APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    One VM
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    One VM
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-model" class="md-nav__link">
+    Deployment Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-changes" class="md-nav__link">
+    Configuration changes
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spa-web" class="md-nav__link">
+    SPA Web
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portal-configuration-file" class="md-nav__link">
+    Portal Configuration file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portal-apis-configuration-file" class="md-nav__link">
+    Portal APIs Configuration file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway" class="md-nav__link">
+    Gateway
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publish-spa-web" class="md-nav__link">
+    Publish SPA Web
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publish-all-services" class="md-nav__link">
+    Publish all services
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-nginx" class="md-nav__link">
+    Configure Nginx
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurate-services-on-startup" class="md-nav__link">
+    Configurate Services on Startup
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurate Services on Startup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-service" class="md-nav__link">
+    Linux Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-startup" class="md-nav__link">
+    Windows Startup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CLI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            CLI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_14_2" id="__nav_14_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14_2">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-info/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal info
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal install
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-uninstall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal uninstall
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-upgrade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal upgrade
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-downgrade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal downgrade
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/letportal-patch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    letportal patch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../open-source/list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Open source projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-model" class="md-nav__link">
+    Deployment Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-changes" class="md-nav__link">
+    Configuration changes
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spa-web" class="md-nav__link">
+    SPA Web
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portal-configuration-file" class="md-nav__link">
+    Portal Configuration file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portal-apis-configuration-file" class="md-nav__link">
+    Portal APIs Configuration file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway" class="md-nav__link">
+    Gateway
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publish-spa-web" class="md-nav__link">
+    Publish SPA Web
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publish-all-services" class="md-nav__link">
+    Publish all services
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-nginx" class="md-nav__link">
+    Configure Nginx
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurate-services-on-startup" class="md-nav__link">
+    Configurate Services on Startup
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurate Services on Startup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-service" class="md-nav__link">
+    Linux Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-startup" class="md-nav__link">
+    Windows Startup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>One VM</h1>
+
+<p><strong>The documentation applies to:</strong><img alt="✅" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/2705.svg" title=":white_check_mark:" /> v0.8.0</p>
+<h3 id="deployment-model">Deployment Model<a class="headerlink" href="#deployment-model" title="Permanent link">&para;</a></h3>
+<p><img alt="LET Portal Architecture" src="../../assets/images/Software-Architecture.png" /></p>
+<p>Now look back to LET Portal Architecture, we need to discuss more details before you can choose this Deployment Model.</p>
+<p>Technically, all components which stay inside DMZ should be deployed on one VM. So you need to install some softwares below:</p>
+<ul>
+<li>Nginx </li>
+<li>.NET Core SDK (prefer to build and run)</li>
+<li>MongoDB</li>
+<li>Any database which stores Portal and Identity Database</li>
+</ul>
+<p>Also we prefer to a directory structure of <code>letportal-pub</code> folder below:</p>
+<ul>
+<li><code>spa-web</code>: Copy all files of <code>dist\web-portal</code> folder which you published by Angular CLI</li>
+<li><code>web-apis</code>:<ul>
+<li><code>LetPortal.IdentityApis</code>: publish Identity APIs into this folder</li>
+<li><code>LetPortal.PortalApis</code>: publish Portal APIs into this folder</li>
+<li><code>LetPortal.ServiceManagementApis</code>: publish Service Management APIs into this folder</li>
+<li><code>LetPortal.GatewayApis</code>: publish Gateway APIs into this folder</li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Grant permissions</p>
+<p>On Linux, you need to grant permission on these folders with command <code>sudo chmod -R 755 ~/.letportal-pub</code>.</p>
+</div>
+<h3 id="configuration-changes">Configuration changes<a class="headerlink" href="#configuration-changes" title="Permanent link">&para;</a></h3>
+<h4 id="spa-web">SPA Web<a class="headerlink" href="#spa-web" title="Permanent link">&para;</a></h4>
+<p>Publish command: <code>npm run prod</code></p>
+<p>Location: <code>src\web-portal\src\environments\environment.prod.ts</code></p>
+<p>Changes:</p>
+<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">production</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.0.5&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">configurationEndpoint</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;http://{Your_public_domain}:8080/v1.0/api/configurations/Portal/v1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ignoreSendTokenEndpoints</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;api/accounts/login;api/accounts/refresh;api/accounts/forgot-password;api/accounts/recovery-password&quot;</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="portal-configuration-file">Portal Configuration file<a class="headerlink" href="#portal-configuration-file" title="Permanent link">&para;</a></h4>
+<p>Location: <code>src\web-apis\LetPortal.ServiceManagementApis\Files\Portal\v1.0\appsettings.Local.json</code></p>
+<p>Changes:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;portalBaseEndpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://{Your public domain}:8080/v1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;identityBaseEndpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://{Your public domain}:8081&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="portal-apis-configuration-file">Portal APIs Configuration file<a class="headerlink" href="#portal-apis-configuration-file" title="Permanent link">&para;</a></h4>
+<p>Location: <code>src\web-apis\LetPortal.WebApis\appsettings.Local.json</code></p>
+<p>Changes:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;FileOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;DownloadableHost&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&quot;http://{Your_public_domain}:8080/v1.0/files</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
+<h4 id="gateway">Gateway<a class="headerlink" href="#gateway" title="Permanent link">&para;</a></h4>
+<p>Location: <code>src\web-apis\LetPortal.Gateway\appsettings.Local.json</code></p>
+<p>Changes:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;GlobalConfiguration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;BaseUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://{Your_public_domain}:8080/&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="publish-spa-web">Publish SPA Web<a class="headerlink" href="#publish-spa-web" title="Permanent link">&para;</a></h3>
+<p>You need to read <a href="../deploy-spa-web/">this</a> for more details. For brief, just use these commands below</p>
+<div class="admonition note">
+<p class="admonition-title">Configuration Url</p>
+<p>You need to edit <code>configurationEndpoint</code> in <code>environment.prodlocal.ts</code> file. For example: if you have a plan to public this website with <code>letportal.abc.com</code> domain, you need to change it into this domain.</p>
+</div>
+<p>``` powershell tab="Window"
+cd src\web-portal</p>
+<p>npm install</p>
+<p>npm run prodlocal</p>
+<p>Copy-Item -Path .\dist\web-portal* -Destination D:.letportal-pub\spa-web -Recurse 
+<div class="highlight"><pre><span></span><code>``` bash tab=&quot;Linux&quot;
+cd src/web-portal
+
+npm install
+
+npm run prod
+
+sudo cp dist/web-portal/* ~/.letportal-pub/spa-web/ -r
+</code></pre></div></p>
+<h3 id="publish-all-services">Publish all services<a class="headerlink" href="#publish-all-services" title="Permanent link">&para;</a></h3>
+<p>You need to read <a href="../some-services/">this</a> for more details. For brief, just use these commands below</p>
+<p>``` powershell tab="Window"
+cd src\web-apis</p>
+<p>.\publish-win.ps1 -publishFolder "D:.letportal-pub\web-apis"</p>
+<p>.\run-win.ps1 -publishFolder "D:.letportal-pub\web-apis" -environment "Local"
+<div class="highlight"><pre><span></span><code>``` bash tab=&quot;Linux&quot;
+cd src/web-apis
+
+sudo ./publish-lnx.sh
+
+sudo ./run-lnx.sh
+</code></pre></div></p>
+<h3 id="configure-nginx">Configure Nginx<a class="headerlink" href="#configure-nginx" title="Permanent link">&para;</a></h3>
+<p>Now if you ensure four services are running well, you continue to set up Nginx for allowing external clients to access.</p>
+<p>Nginx must listen on these ports to act as proxy forward a request to correct service.</p>
+<ul>
+<li>Identity APIs: 8081 - 51620 (Nginx listens  on 8081 then forward to local port 51620 which Identity APIs listens)</li>
+<li>Gateway APIs: 8080 - 53595</li>
+<li>SPA Web: 80</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Install Nginx</p>
+<p>I recommend you to do step by step in <a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04">this guide</a>. On Windows, you just install as usual.</p>
+</div>
+<p>If you don't have an experience on Nginx, so you just copy and replace this <code>nginx.conf</code> file on <code>\etc\nginx</code> folder on Linux or <code>{your_installed_path}/nginx</code> on Windows</p>
+<p>``` Nginx tab="Basic nginx.conf"
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;</p>
+<p>events {
+    worker_connections 768;
+    # multi_accept on;
+}</p>
+<p>http {</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">##</span>
+<span class="c1"># Basic Settings</span>
+<span class="c1">##</span>
+
+<span class="n">sendfile</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="n">tcp_nopush</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="n">tcp_nodelay</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="n">keepalive_timeout</span><span class="w"> </span><span class="mi">65</span><span class="p">;</span>
+<span class="n">types_hash_max_size</span><span class="w"> </span><span class="mi">2048</span><span class="p">;</span>
+<span class="c1"># server_tokens off;</span>
+
+<span class="n">server_names_hash_bucket_size</span><span class="w"> </span><span class="mi">64</span><span class="p">;</span>
+<span class="c1"># server_name_in_redirect off;</span>
+
+<span class="n">include</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">mime</span><span class="o">.</span><span class="n">types</span><span class="p">;</span>
+<span class="n">default_type</span><span class="w"> </span><span class="n">application</span><span class="o">/</span><span class="n">octet</span><span class="o">-</span><span class="n">stream</span><span class="p">;</span>
+
+<span class="c1">##</span>
+<span class="c1"># SSL Settings</span>
+<span class="c1">##</span>
+
+<span class="n">ssl_protocols</span><span class="w"> </span><span class="n">TLSv1</span><span class="w"> </span><span class="n">TLSv1</span><span class="o">.</span><span class="mi">1</span><span class="w"> </span><span class="n">TLSv1</span><span class="o">.</span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1"># Dropping SSLv3, ref: POODLE</span>
+<span class="n">ssl_prefer_server_ciphers</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+
+<span class="c1">##</span>
+<span class="c1"># Logging Settings</span>
+<span class="c1">##</span>
+
+<span class="c1">#access_log /var/log/nginx/access.log;</span>
+<span class="c1">#error_log /var/log/nginx/error.log;</span>
+
+<span class="c1">##</span>
+<span class="c1"># Gzip Settings</span>
+<span class="c1">##</span>
+
+<span class="n">gzip</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+
+<span class="c1"># gzip_vary on;</span>
+<span class="c1"># gzip_proxied any;</span>
+<span class="c1"># gzip_comp_level 6;</span>
+<span class="c1"># gzip_buffers 16 8k;</span>
+<span class="c1"># gzip_http_version 1.1;</span>
+<span class="c1"># gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;</span>
+
+<span class="c1">##</span>
+<span class="c1"># Virtual Host Configs</span>
+<span class="c1">##</span>
+
+<span class="n">include</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span><span class="o">/*.</span><span class="n">conf</span><span class="p">;</span>
+<span class="n">include</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span><span class="o">/*</span><span class="p">;</span>
+
+<span class="n">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">listen</span><span class="w">       </span><span class="mi">8080</span><span class="p">;</span>
+<span class="w">    </span><span class="n">server_name</span><span class="w"> </span><span class="n">_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">access_log</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">api</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
+<span class="w">    </span><span class="n">error_log</span><span class="w">  </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">api</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
+<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">proxy_pass</span><span class="w">         </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">53595</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">#proxy_http_version 1.1;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   Upgrade $http_upgrade;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   Connection keep-alive;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   Host $host;</span>
+<span class="w">        </span><span class="c1">#proxy_cache_bypass $http_upgrade;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   X-Forwarded-Proto $scheme;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">listen</span><span class="w"> </span><span class="mi">8081</span><span class="p">;</span>
+<span class="w">    </span><span class="n">server_name</span><span class="w"> </span><span class="n">_</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">#access_log /etc/nginx/logs/ids.access.log;</span>
+<span class="w">    </span><span class="c1">#error_log  /etc/nginx/logs/ids.error.log;</span>
+<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">proxy_pass</span><span class="w">         </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">51620</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">#proxy_http_version 1.1;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   Upgrade $http_upgrade;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   Connection keep-alive;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   Host $host;</span>
+<span class="w">        </span><span class="c1">#proxy_cache_bypass $http_upgrade;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;</span>
+<span class="w">        </span><span class="c1">#proxy_set_header   X-Forwarded-Proto $scheme;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>}
+<div class="highlight"><pre><span></span><code>## Configure SPA Web
+
+Nginx must create `spa-web.conf` file on `nginx\sites-available` with the content below:
+
+``` nginx
+server {
+        listen 80;
+        listen [::]:80;
+
+        root $HOME/.letportal-pub/spa-web;
+        index index.html index.htm;
+
+        server_name letportal.internal;
+
+        location / {
+                try_files $uri $uri/ /index.html;
+        }
+}
+</code></pre></div></p>
+<p>You need to check a folder path on <code>root</code> section which matches your SPA web's deployment folder.</p>
+<p><code>server_name</code> must be a public domain or <code>local DNS name</code> in intranet.</p>
+<p>After you created this file successfully, you need to create a link from it to <code>sites-enabled</code> by command</p>
+<p>``` powershell tab="Windows"
+Copy-Item -Path .\sites-available\spa-web.conf -Destination .\sites-enabled\
+<div class="highlight"><pre><span></span><code>``` bash tab=&quot;Linux&quot;
+sudo ln -s /etc/nginx/sites-available/spa-web.conf /etc/nginx/sites-enabled/
+</code></pre></div></p>
+<h4 id="configurate-services-on-startup">Configurate Services on Startup<a class="headerlink" href="#configurate-services-on-startup" title="Permanent link">&para;</a></h4>
+<p>Nginx only helps you to forward a request to correct server. So it can't monitor a DotNET processes and wake them up when a server restarts. Thus you need to create a Window Service or Linux Service to wake them up.</p>
+<h5 id="linux-service">Linux Service<a class="headerlink" href="#linux-service" title="Permanent link">&para;</a></h5>
+<p>Edit a <code>run-lnx.sh</code> to adjust default absolute path on <code>$publishFolder</code> parameter</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nv">publishFolder</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="p">/home/demolnx/.letportal-pub/web-apis</span><span class="si">}</span>
+<span class="nv">environment</span><span class="o">=</span><span class="si">${</span><span class="nv">2</span><span class="k">:-</span><span class="nv">Local</span><span class="si">}</span>
+</code></pre></div>
+<p>Create a service definition file:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/systemd/system/letportal-apis.service
+</code></pre></div>
+<p>Copy this content in this file</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Run<span class="w"> </span>all<span class="w"> </span>LET<span class="w"> </span>Portal<span class="w"> </span>services
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="c1"># Ensure installed MongoDB and some databases wake up</span>
+<span class="nv">ExecStartPre</span><span class="o">=</span>/bin/sleep<span class="w"> </span><span class="m">30</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/home/demolnx/letportal.app/src/web-apis/run-lnx.sh
+<span class="nv">ExecStop</span><span class="o">=</span>/home/demolnx/letportal.app/src/web-apis/shutdown-lnx.sh
+<span class="nv">TimeoutStartSec</span><span class="o">=</span><span class="m">120</span>
+<span class="nv">Type</span><span class="o">=</span>oneshot
+<span class="nv">RemainAfterExit</span><span class="o">=</span>yes
+<span class="nv">KillSignal</span><span class="o">=</span>SIGINT
+<span class="nv">SyslogIdentifier</span><span class="o">=</span>letportal-apis
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Script path</p>
+<p>Because this service will run under <code>root</code> so you need to adjust your path in <code>ExecStart</code> and <code>ExecStop</code> </p>
+</div>
+<p>Then you execute this bash to enable a service</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>letportal-apis.service
+
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>letportal-apis.service
+
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>letportal-apis.service
+</code></pre></div>
+<p>The result should be</p>
+<div class="highlight"><pre><span></span><code>letportal-apis.service<span class="w"> </span>-<span class="w"> </span>Run<span class="w"> </span>all<span class="w"> </span>LET<span class="w"> </span>Portal<span class="w"> </span>services
+<span class="w">   </span>Loaded:<span class="w"> </span>loaded<span class="w"> </span><span class="o">(</span>/etc/systemd/system/letportal-apis.service<span class="p">;</span><span class="w"> </span>enabled<span class="p">;</span><span class="w"> </span>vendor<span class="w"> </span>preset:<span class="w"> </span>enabled<span class="o">)</span>
+<span class="w">   </span>Active:<span class="w"> </span>active<span class="w"> </span><span class="o">(</span>exited<span class="o">)</span><span class="w"> </span>since<span class="w"> </span>Fri<span class="w"> </span><span class="m">2020</span>-03-06<span class="w"> </span><span class="m">14</span>:31:35<span class="w"> </span>+07<span class="p">;</span><span class="w"> </span>5min<span class="w"> </span>ago
+<span class="w">  </span>Process:<span class="w"> </span><span class="m">864</span><span class="w"> </span><span class="nv">ExecStartPost</span><span class="o">=</span>/bin/sleep<span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited,<span class="w"> </span><span class="nv">status</span><span class="o">=</span><span class="m">0</span>/SUCCESS<span class="o">)</span>
+<span class="w">  </span>Process:<span class="w"> </span><span class="m">754</span><span class="w"> </span><span class="nv">ExecStart</span><span class="o">=</span>/home/demolnx/letportal.app/src/web-apis/run-lnx.sh<span class="w"> </span><span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited,<span class="w"> </span><span class="nv">status</span><span class="o">=</span><span class="m">0</span>/SUCCESS<span class="o">)</span>
+<span class="w"> </span>Main<span class="w"> </span>PID:<span class="w"> </span><span class="m">754</span><span class="w"> </span><span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited,<span class="w"> </span><span class="nv">status</span><span class="o">=</span><span class="m">0</span>/SUCCESS<span class="o">)</span>
+<span class="w">    </span>Tasks:<span class="w"> </span><span class="m">31</span><span class="w"> </span><span class="o">(</span>limit:<span class="w"> </span><span class="m">2245</span><span class="o">)</span>
+<span class="w">   </span>CGroup:<span class="w"> </span>/system.slice/letportal-apis.service
+<span class="w">           </span>├─767<span class="w"> </span>SCREEN<span class="w"> </span>-dmS<span class="w"> </span>letportal-sm
+<span class="w">           </span>├─772<span class="w"> </span>/bin/sh
+<span class="w">           </span>├─780<span class="w"> </span>SCREEN<span class="w"> </span>-dmS<span class="w"> </span>letportal-pt
+<span class="w">           </span>├─782<span class="w"> </span>/bin/sh
+<span class="w">           </span>├─785<span class="w"> </span>dotnet<span class="w"> </span>LetPortal.PortalApis.dll
+<span class="w">           </span>├─787<span class="w"> </span>SCREEN<span class="w"> </span>-dmS<span class="w"> </span>letportal-id
+<span class="w">           </span>├─789<span class="w"> </span>/bin/sh
+<span class="w">           </span>├─794<span class="w"> </span>SCREEN<span class="w"> </span>-dmS<span class="w"> </span>letportal-gw
+<span class="w">           </span>└─796<span class="w"> </span>/bin/sh
+</code></pre></div>
+<h5 id="windows-startup">Windows Startup<a class="headerlink" href="#windows-startup" title="Permanent link">&para;</a></h5>
+<p>You can read <a href="https://www.addictivetips.com/windows-tips/auto-run-powershell-scripts-windows-10/">this post</a> to learn how to trigger <code>run-win.ps1</code> on Windows Startup</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        
+
+
+<!-- Application footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+
+        <!-- Link to previous page -->
+        
+          <a href="../some-services/"
+              title="Server-side APIs"
+              class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+              rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Server-side APIs
+              </span>
+            </div>
+          </a>
+        
+
+        <!-- Link to next page -->
+        
+          <a href="../docker/"
+              title="Docker"
+              class="md-flex md-footer-nav__link md-footer-nav__link--next"
+              rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Docker
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward
+                    md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            @Copyright 2020, An Quang Phuc Le
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+
+      <!-- Social links -->
+      <div class="md-social">
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+    
+  </body>
+</html>
